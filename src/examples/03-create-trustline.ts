@@ -1,4 +1,11 @@
-import { Keypair, Horizon, TransactionBuilder, Networks, Operation, Asset } from '@stellar/stellar-sdk';
+import {
+  Keypair,
+  Horizon,
+  TransactionBuilder,
+  Networks,
+  Operation,
+  Asset,
+} from '@stellar/stellar-sdk';
 
 export async function run(): Promise<void> {
   const horizonUrl = process.env.HORIZON_URL || 'https://horizon-testnet.stellar.org';

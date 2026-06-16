@@ -1,4 +1,11 @@
-import { Keypair, Horizon, TransactionBuilder, Networks, Operation, Asset } from '@stellar/stellar-sdk';
+import {
+  Keypair,
+  Horizon,
+  TransactionBuilder,
+  Networks,
+  Operation,
+  Asset,
+} from '@stellar/stellar-sdk';
 
 export async function run(): Promise<void> {
   const horizonUrl = process.env.HORIZON_URL || 'https://horizon-testnet.stellar.org';
@@ -8,7 +15,7 @@ export async function run(): Promise<void> {
   console.log('Preparing sender account...');
   const sender = Keypair.random();
   console.log(`Sender Public Key: ${sender.publicKey()}`);
-  
+
   // Fund sender on testnet so it has balance to spend
   const fundUrl = `https://friendbot.stellar.org/?addr=${sender.publicKey()}`;
   await fetch(fundUrl);

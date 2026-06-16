@@ -61,7 +61,9 @@ export async function run(): Promise<void> {
   // Verify
   console.log('\nLoading updated account configurations...');
   const updatedAccount = await server.loadAccount(primary.publicKey());
-  console.log(`Master Weight: ${updatedAccount.thresholds.low_threshold} (Low), ${updatedAccount.thresholds.med_threshold} (Medium), ${updatedAccount.thresholds.high_threshold} (High)`);
+  console.log(
+    `Master Weight: ${updatedAccount.thresholds.low_threshold} (Low), ${updatedAccount.thresholds.med_threshold} (Medium), ${updatedAccount.thresholds.high_threshold} (High)`,
+  );
   console.log('Signers list:');
   for (const s of updatedAccount.signers) {
     console.log(`  - Key: ${s.key.slice(0, 15)}... Weight: ${s.weight}`);

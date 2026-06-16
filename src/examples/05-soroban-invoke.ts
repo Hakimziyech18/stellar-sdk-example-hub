@@ -1,4 +1,12 @@
-import { Keypair, rpc, Contract, xdr, Networks, TransactionBuilder, Account } from '@stellar/stellar-sdk';
+import {
+  Keypair,
+  rpc,
+  Contract,
+  xdr,
+  Networks,
+  TransactionBuilder,
+  Account,
+} from '@stellar/stellar-sdk';
 
 export async function run(): Promise<void> {
   const rpcUrl = process.env.SOROBAN_RPC_URL || 'https://soroban-testnet.stellar.org';
@@ -44,7 +52,7 @@ export async function run(): Promise<void> {
   // Soroban invocations must be simulated to compute footprint and resource fees
   console.log('Simulating contract transaction on-chain...');
   const simResult = await server.simulateTransaction(tx);
-  
+
   if (rpc.Api.isSimulationError(simResult)) {
     console.warn('Simulation returned an error (expected if mock address or contract expired).');
     console.log(`Details: ${simResult.error}`);
@@ -62,9 +70,11 @@ export async function run(): Promise<void> {
   tx.sign(caller);
   console.log('Submitting contract transaction to Soroban RPC...');
   const response = await server.sendTransaction(tx);
-  
+
   if (response.status === 'ERROR') {
-    throw new Error(`Transaction submission error: ${response.errorResult?.toXDR().toString('base64') || 'Unknown'}`);
+    throw new Error(
+      `Transaction submission error: ${response.errorResult?.toXDR().toString('base64') || 'Unknown'}`,
+    );
   }
 
   console.log(`Transaction sent successfully! Status: ${response.status}`);

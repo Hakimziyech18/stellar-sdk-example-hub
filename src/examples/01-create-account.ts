@@ -10,12 +10,12 @@ export async function run(): Promise<void> {
   // 2. Request Friendbot funding on testnet
   const friendbotUrl = `https://friendbot.stellar.org/?addr=${encodeURIComponent(keypair.publicKey())}`;
   console.log(`\nRequesting testnet XLM funding from Friendbot...`);
-  
+
   const response = await fetch(friendbotUrl);
   if (!response.ok) {
     throw new Error(`Friendbot failed with status: ${response.status}`);
   }
-  
+
   console.log('Friendbot funding successful!');
 
   // 3. Load account details from Horizon testnet to verify balances
@@ -30,7 +30,10 @@ export async function run(): Promise<void> {
   console.log(`Sequence: ${account.sequenceNumber()}`);
   console.log('Balances:');
   for (const balance of account.balances) {
-    const asset = balance.asset_type === 'native' ? 'XLM' : `${(balance as any).asset_code} (Issuer: ${(balance as any).asset_issuer})`;
+    const asset =
+      balance.asset_type === 'native'
+        ? 'XLM'
+        : `${(balance as any).asset_code} (Issuer: ${(balance as any).asset_issuer})`;
     console.log(`  - ${balance.balance} ${asset}`);
   }
 }
