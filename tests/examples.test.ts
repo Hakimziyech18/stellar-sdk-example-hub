@@ -5,6 +5,8 @@ import * as ex4 from '../src/examples/04-multisig';
 import * as ex5 from '../src/examples/05-soroban-invoke';
 import * as ex7 from '../src/examples/07-claimable-balances';
 import * as ex9 from '../src/examples/09-fee-bump';
+import * as ex8 from '../src/examples/08-liquidity-pools';
+import * as ex11 from '../src/examples/11-sponsored-reserves';
 import * as ex12 from '../src/examples/12-asset-issuance';
 import * as ex14 from '../src/examples/14-time-locked-escrow';
 import * as ex16 from '../src/examples/16-batched-operations';
@@ -21,6 +23,8 @@ describe('Examples Exports', () => {
     expect(typeof ex5.run).toBe('function');
     expect(typeof ex7.run).toBe('function');
     expect(typeof ex9.run).toBe('function');
+    expect(typeof ex8.run).toBe('function');
+    expect(typeof ex11.run).toBe('function');
     expect(typeof ex12.run).toBe('function');
     expect(typeof ex14.run).toBe('function');
     expect(typeof ex16.run).toBe('function');
