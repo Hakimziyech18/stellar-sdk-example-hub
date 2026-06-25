@@ -28,7 +28,7 @@ export async function run(): Promise<void> {
   console.log('\nFunding accounts via Friendbot...');
   await fundAccount(source.publicKey());
   await fundAccount(sponsor.publicKey());
-
+  await fundAccount(destination.publicKey());
   const sourceAccount = await server.loadAccount(source.publicKey());
   const innerTx = new TransactionBuilder(sourceAccount, {
     fee: '100',
