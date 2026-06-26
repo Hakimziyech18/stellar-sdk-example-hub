@@ -12,6 +12,7 @@ import * as ex14 from '../src/examples/14-time-locked-escrow';
 import * as ex16 from '../src/examples/16-batched-operations';
 import * as ex17 from '../src/examples/17-offline-signing';
 import * as ex18 from '../src/examples/18-soroban-errors';
+import * as ex21 from '../src/examples/21-sep24-deposit-withdrawal';
 import { examples } from '../src/runner/catalog';
 import * as ex19 from '../src/examples/19-horizon-streaming';
 
@@ -31,6 +32,7 @@ describe('Examples Exports', () => {
     expect(typeof ex16.run).toBe('function');
     expect(typeof ex17.run).toBe('function');
     expect(typeof ex18.run).toBe('function');
+    expect(typeof ex21.run).toBe('function');
     expect(typeof ex19.run).toBe('function');
   });
 
