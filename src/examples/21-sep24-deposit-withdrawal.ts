@@ -1,4 +1,11 @@
-import { Keypair, Horizon, Networks, TransactionBuilder, Operation, Asset } from '@stellar/stellar-sdk';
+import {
+  Keypair,
+  Horizon,
+  Networks,
+  TransactionBuilder,
+  Operation,
+  Asset,
+} from '@stellar/stellar-sdk';
 
 /**
  * SEP-24 Interactive Deposit & Withdrawal Example
@@ -416,22 +423,14 @@ export async function run(): Promise<void> {
 
   // ── Step 3: SEP-10 authentication ──────────────────────────────────────────
   console.log('\nStep 3: Authenticating with anchor via SEP-10...');
-  const jwt = await sep10Authenticate(
-    toml.WEB_AUTH_ENDPOINT,
-    walletKeypair,
-    ANCHOR_DOMAIN,
-  );
+  const jwt = await sep10Authenticate(toml.WEB_AUTH_ENDPOINT, walletKeypair, ANCHOR_DOMAIN);
   console.log('  Authentication successful. JWT acquired.');
 
   // ── Step 4: Establish trustline for the test asset ────────────────────────
   // We need to know the asset issuer before we can create a trustline.
   // Fetch it from the anchor's /info endpoint.
   console.log(`\nStep 4: Fetching ${TEST_ASSET_CODE} asset issuer from anchor /info...`);
-  const assetIssuer = await fetchAssetIssuer(
-    toml.TRANSFER_SERVER_SEP0024,
-    TEST_ASSET_CODE,
-    jwt,
-  );
+  const assetIssuer = await fetchAssetIssuer(toml.TRANSFER_SERVER_SEP0024, TEST_ASSET_CODE, jwt);
 
   if (!assetIssuer) {
     console.log(
@@ -541,9 +540,7 @@ export async function run(): Promise<void> {
     console.log(`  Transaction ID: ${withdrawalResponse.id}`);
     console.log(`  Anchor interactive URL:`);
     console.log(`    ${withdrawalResponse.url}`);
-    console.log(
-      '  (In a real wallet, the user would open this URL to provide bank routing info.)',
-    );
+    console.log('  (In a real wallet, the user would open this URL to provide bank routing info.)');
   } catch (err: any) {
     console.error(`  Withdrawal initiation error: ${err.message}`);
     console.log('  Skipping withdrawal polling and payment steps.');
