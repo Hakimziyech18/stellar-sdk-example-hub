@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
+import { examples } from './runner/catalog';
 
 // Load env variables
 dotenv.config();
@@ -137,7 +138,6 @@ const examples: Record<string, Example> = {
 async function runInteractivePrompt(): Promise<void> {
   console.log(chalk.bold.green('\n🎓 Stellar SDK Example Hub — Interactive Runner 🎓\n'));
 
-  // Build selectable choices with descriptions
   const choices = Object.values(examples).map((ex) => ({
     name: `${chalk.yellow(ex.name)}: ${ex.description}`,
     value: ex.name,
@@ -165,13 +165,11 @@ async function runInteractivePrompt(): Promise<void> {
   const ex = examples[selectedExampleName];
   let params: any = {};
 
-  // Request example-specific parameters if they exist
   if (ex.params && ex.params.length > 0) {
     console.log(chalk.cyan(`\nConfigure parameters for: ${ex.name}`));
     params = await inquirer.prompt(ex.params);
   }
 
-  // Display a summary of the selected example before execution
   console.log(chalk.bold.cyan(`\n=== Selected Example Details ===`));
   console.log(`${chalk.bold('Name:')}        ${ex.name}`);
   console.log(`${chalk.bold('Description:')} ${ex.description}`);
@@ -213,7 +211,6 @@ async function main() {
   const targetExample = args[0];
 
   if (targetExample) {
-    // Non-interactive command line execution
     const ex = examples[targetExample];
     if (!ex) {
       console.error(chalk.red(`Error: Example "${targetExample}" not found.`));
@@ -232,7 +229,6 @@ async function main() {
       process.exit(1);
     }
   } else {
-    // Interactive prompt execution when no arguments are provided
     await runInteractivePrompt();
   }
 }
