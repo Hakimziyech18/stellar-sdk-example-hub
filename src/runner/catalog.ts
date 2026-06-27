@@ -10,6 +10,7 @@ import { run as runBatchedOperations } from '../examples/16-batched-operations';
 import { run as runAssetIssuance } from '../examples/12-asset-issuance';
 import { run as runOfflineSigning } from '../examples/17-offline-signing';
 import { run as runSorobanErrors } from '../examples/18-soroban-errors';
+import { run as runSep10Authentication } from '../examples/20-sep10-authentication';
 
 export interface Example {
   name: string;
@@ -105,5 +106,10 @@ export const examples: Record<string, Example> = {
     name: '18-soroban-errors',
     description: 'Intentionally trigger and parse Soroban RPC and transaction errors',
     run: runSorobanErrors,
+  },
+  '20-sep10-authentication': {
+    name: '20-sep10-authentication',
+    description: 'SEP-10 Web Authentication: challenge generation, signing, verification, and JWT issuance',
+    run: runSep10Authentication,
   },
 };
