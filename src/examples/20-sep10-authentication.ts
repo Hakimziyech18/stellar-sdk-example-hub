@@ -1,4 +1,11 @@
-import { Keypair, Networks, TransactionBuilder, Transaction } from '@stellar/stellar-sdk';
+import {
+  Account,
+  Keypair,
+  Networks,
+  Operation,
+  Transaction,
+  TransactionBuilder,
+} from '@stellar/stellar-sdk';
 
 /**
  * SEP-10 Web Authentication Example
@@ -135,7 +142,6 @@ function buildChallengeTransaction(
   networkPassphrase: string,
 ): Transaction {
   // A sequence-0 account object is used so the transaction is never submittable
-  const { Account } = require('@stellar/stellar-sdk');
   const serverAccount = new Account(serverKeypair.publicKey(), '-1'); // seq -1 → built tx gets seq 0
 
   // 32-byte nonce encoded as base64
@@ -192,7 +198,7 @@ function verifyChallengeTransaction(
   homeDomain: string,
   networkPassphrase: string,
 ): void {
-  // Removed unused stellarHash import
+  const { hash: stellarHash } = require('@stellar/stellar-sdk');
 
   // 1. Network passphrase
   if (tx.networkPassphrase !== networkPassphrase) {
@@ -519,14 +525,13 @@ export async function run(): Promise<void> {
   console.log('\nStep 7: Demonstrating challenge expiration detection...');
   const serverKpForExpiry = Keypair.random();
   const clientKpForExpiry = Keypair.random();
-  const { Account, Operation: Op } = require('@stellar/stellar-sdk');
   const expiredServerAccount = new Account(serverKpForExpiry.publicKey(), '-1');
   const expiredTx = new TransactionBuilder(expiredServerAccount, {
     fee: '100',
     networkPassphrase: Networks.TESTNET,
   })
     .addOperation(
-      Op.manageData({
+      Operation.manageData({
         name: `${ANCHOR_DOMAIN} auth`,
         value: Buffer.from(crypto.getRandomValues(new Uint8Array(32))),
         source: clientKpForExpiry.publicKey(),

@@ -29,11 +29,14 @@ We organize examples sequentially:
 16. **`17-offline-signing`**: Building unsigned transaction XDR, signing it offline, and verifying.
 17. **`18-soroban-errors`**: Intentionally triggering and parsing Soroban RPC and simulation errors.
 18. **`19-horizon-streaming`**: Subscribing to live Horizon Testnet payment events over Server-Sent Events.
-19. **`22-manage-buy-offer`**: Creating, modifying, and deleting buy offers on the Stellar SDEX using `manageBuyOffer`.
-20. **`23-manage-data-entries`**: Creating, updating, querying, and removing account data entries using `manageData`.
-21. **`24-create-passive-sell-offer`**: Creating a passive sell offer on the SDEX for resting liquidity provisioning.
-22. **`24-cross-contract-invoke`**: Demonstrate cross-contract invocation, authorization, and returned values.
-23. **`25-account-flags`**: Viewing and modifying issuer account authorization flags (`AUTH_REQUIRED`, `AUTH_REVOCABLE`, `AUTH_IMMUTABLE`).
+19. **`20-sep10-authentication`**: SEP-10 challenge generation, signing, verification, and JWT issuance.
+20. **`21-sep24-deposit-withdrawal`**: Running SEP-24 interactive deposit and withdrawal against a Testnet anchor.
+21. **`22-manage-buy-offer`**: Creating, modifying, and deleting buy offers on the Stellar SDEX using `manageBuyOffer`.
+22. **`23-manage-data-entries`**: Creating, updating, querying, and removing account data entries using `manageData`.
+23. **`24-create-passive-sell-offer`**: Creating a passive sell offer on the SDEX for resting liquidity provisioning.
+24. **`24-cross-contract-invoke`**: Demonstrate cross-contract invocation, authorization, and returned values.
+25. **`25-account-flags`**: Viewing and modifying issuer account authorization flags (`AUTH_REQUIRED`, `AUTH_REVOCABLE`, `AUTH_IMMUTABLE`).
+26. **`26-sponsored-claimable-balance`**: Creating a sponsored claimable balance and claiming it from the recipient account.
 
 ## Installation
 
